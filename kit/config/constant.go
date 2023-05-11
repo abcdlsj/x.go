@@ -9,9 +9,8 @@ var (
 type EventType uint8
 
 const (
-	Create EventType = iota
+	Unknown EventType = iota
+	Create
 	Update
 	Delete
-
-	Unknown EventType = 255
 )
