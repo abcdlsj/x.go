@@ -43,6 +43,14 @@ func NewLocalClient() *Client {
 	return NewClient(WithStorage(NewLocalStorage()))
 }
 
+func NewRedisClient(addr string) *Client {
+	return NewClient(WithStorage(NewRedisStorage(addr)))
+}
+
+func NewEtcdClient(endpoints []string) *Client {
+	return NewClient(WithStorage(NewEtcdStorage(endpoints)))
+}
+
 func (l *Client) Get(key string) ([]byte, error) {
 	l.mu.RLock()
 	defer l.mu.RUnlock()
@@ -88,3 +96,5 @@ func (l *Client) Watch(key string) (chan Event, error) {
 	}
 	return l.watchers[key], nil
 }
+
+var _ Service = (*Client)(nil)
