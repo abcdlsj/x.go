@@ -1,8 +1,11 @@
 module github.com/abcdlsj/x
 
-go 1.19
+go 1.20
 
-require github.com/go-redis/redis/v8 v8.11.5
+require (
+	github.com/go-redis/redis/v8 v8.11.5
+	go.etcd.io/etcd/client/v3 v3.5.8
+)
 
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
@@ -13,7 +16,6 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.8 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.8 // indirect
-	go.etcd.io/etcd/client/v3 v3.5.8 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.17.0 // indirect
