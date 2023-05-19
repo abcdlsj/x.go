@@ -5,12 +5,16 @@ import (
 	"testing"
 )
 
+func defaultTestPretty(f *os.File) *PrettyHandler {
+	return NewPrettyHandler().W(f).SetLevel(Info)
+}
+
 func TestPrintInfo(t *testing.T) {
 	f, err := os.OpenFile("test.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		t.Fatal(err)
 	}
-	var xlogger = New(WithHandler(NewPrettyHandler(f, true)))
+	var xlogger = New(WithHandler(defaultTestPretty(f)))
 	xlogger.Info("run xlog", "name", "xlog", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
@@ -24,7 +28,7 @@ func TestPrintDebug(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var xlogger = New(WithHandler(NewPrettyHandler(f, true)))
+	var xlogger = New(WithHandler(defaultTestPretty(f)))
 	xlogger.Debug("run xlog", "name", "xlog", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
@@ -38,7 +42,7 @@ func TestPrintError(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var xlogger = New(WithHandler(NewPrettyHandler(f, true)))
+	var xlogger = New(WithHandler(defaultTestPretty(f)))
 	xlogger.Error("run xlog", "name", "xlog", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
@@ -52,7 +56,7 @@ func TestPrintWarn(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var xlogger = New(WithHandler(NewPrettyHandler(f, true)))
+	var xlogger = New(WithHandler(defaultTestPretty(f)))
 	xlogger.Warn("run xlog", "name", "xlog", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
@@ -62,11 +66,14 @@ func TestPrintWarn(t *testing.T) {
 }
 
 func TestMarkHandler(t *testing.T) {
-	f, err := os.OpenFile("warn.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	f, err := os.OpenFile("info.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		t.Fatal(err)
 	}
-	var xlogger = New(WithHandler(NewMarkHandler(map[string]interface{}{"version": "****"}), NewPrettyHandler(f, true)))
+	markFields := map[string]interface{}{
+		"version": "v*.*.*",
+	}
+	var xlogger = New(WithHandler(NewMarkHandler(markFields), defaultTestPretty(f)))
 	xlogger.Info("run xlog", "name", "xlog", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
