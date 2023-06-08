@@ -58,9 +58,9 @@ func (p *PrettyHandler) SetLevel(level Level) *PrettyHandler {
 func (p *PrettyHandler) Handle() func(Msg) (Msg, error) {
 	return func(msg Msg) (Msg, error) {
 		t := time.Now().Format(p.layout)
-		s := fmt.Sprintf("%v %s %s", t, p.Level(), msg)
+		s := fmt.Sprintf("%v %s %s\n", t, p.Level(), msg)
 		if p.json {
-			s = fmt.Sprintf(`{"time":"%s","level":"%s","msg":"%s"}`, t, p.Level(), msg)
+			s = fmt.Sprintf(`{"time":"%s","level":"%s","msg":"%s"}\n`, t, p.Level(), msg)
 		}
 		if _, err := io.WriteString(p.w, s); err != nil {
 			return nilMsg, err
