@@ -6,7 +6,7 @@ package main
 import (
 	"fmt"
 
-	chash "github.com/abcdlsj/x/ds/consistenthash"
+	chash "github.com/abcdlsj/x/datastructure/consistenthash"
 )
 
 func main() {
