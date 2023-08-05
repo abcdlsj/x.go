@@ -3,6 +3,7 @@ package webutil
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 	"sync"
 )
 
@@ -63,7 +64,7 @@ func (s *Serve) addH(path, method string, h Handler) {
 }
 
 func (s *Serve) Start(port int) {
-	http.ListenAndServe(":"+string(port), s)
+	http.ListenAndServe(":"+strconv.Itoa(port), s)
 }
 
 func Decode(r *http.Request, v interface{}) error {
