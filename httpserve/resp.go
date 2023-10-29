@@ -1,4 +1,4 @@
-package webutil
+package httpserve
 
 import (
 	"encoding/json"

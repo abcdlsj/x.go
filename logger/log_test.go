@@ -1,4 +1,4 @@
-package xlog
+package logger
 
 import (
 	"os"
@@ -15,7 +15,7 @@ func TestPrintInfo(t *testing.T) {
 		t.Fatal(err)
 	}
 	var xlogger = New(WithHandler(defaultTestPretty(f)))
-	xlogger.Info("run xlog", "name", "xlog", "version", "v1.0.0")
+	xlogger.Info("run logger", "name", "logger", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)
@@ -29,7 +29,7 @@ func TestPrintDebug(t *testing.T) {
 		t.Fatal(err)
 	}
 	var xlogger = New(WithHandler(defaultTestPretty(f)))
-	xlogger.Debug("run xlog", "name", "xlog", "version", "v1.0.0")
+	xlogger.Debug("run logger", "name", "logger", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)
@@ -43,7 +43,7 @@ func TestPrintError(t *testing.T) {
 		t.Fatal(err)
 	}
 	var xlogger = New(WithHandler(defaultTestPretty(f)))
-	xlogger.Error("run xlog", "name", "xlog", "version", "v1.0.0")
+	xlogger.Error("run logger", "name", "logger", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)
@@ -57,7 +57,7 @@ func TestPrintWarn(t *testing.T) {
 		t.Fatal(err)
 	}
 	var xlogger = New(WithHandler(defaultTestPretty(f)))
-	xlogger.Warn("run xlog", "name", "xlog", "version", "v1.0.0")
+	xlogger.Warn("run logger", "name", "logger", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)
@@ -74,7 +74,7 @@ func TestMarkHandler(t *testing.T) {
 		"version": "v*.*.*",
 	}
 	var xlogger = New(WithHandler(NewMarkHandler(markFields), defaultTestPretty(f)))
-	xlogger.Info("run xlog", "name", "xlog", "version", "v1.0.0")
+	xlogger.Info("run logger", "name", "logger", "version", "v1.0.0")
 	fdata, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)

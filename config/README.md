@@ -1,3 +1,3 @@
-# Xconfig
+# Config
 
 Config Management.

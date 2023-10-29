@@ -1,4 +1,4 @@
-package xlog
+package logger
 
 type Level uint8
 

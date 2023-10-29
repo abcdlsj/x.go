@@ -1,4 +1,4 @@
-package xconfig
+package config
 
 import "errors"
 

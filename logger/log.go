@@ -1,4 +1,4 @@
-package xlog
+package logger
 
 type Logger struct {
 	handlers []Handler
